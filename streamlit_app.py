@@ -13,7 +13,7 @@ if uploaded_file is not None:
   fig, ax = plt.subplots()
   df.hist(
     bins=8,
-    column="execution",
+    column="openp",
     grid=False,
     figsize=(8, 8),
     color="#86bf91",
