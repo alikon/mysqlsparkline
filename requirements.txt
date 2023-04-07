@@ -2,3 +2,5 @@ streamlit
 #os
 datetime
 mysql-connector-python
+matplotlib
+pandas

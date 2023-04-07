@@ -1,26 +1,24 @@
-# streamlit_app.py
-
+import matplotlib.pyplot as plt
+import pandas as pd
 import streamlit as st
-import mysql.connector
 
-# Initialize connection.
-# Uses st.cache_resource to only run once.
-@st.cache_resource
-def init_connection():
-    return mysql.connector.connect(**st.secrets["mysql"])
+st.title("Hello world!")
 
-conn = init_connection()
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+  df = pd.read_csv(uploaded_file)
+  st.write(df)
 
-# Perform query.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
-
-rows = run_query("SELECT * from nuovo_github_issues;")
-
-# Print results.
-for row in rows:
-    st.write(f"{row[0]} has a :{row[1]}:")
+  # Add some matplotlib code !
+  fig, ax = plt.subplots()
+  df.hist(
+    bins=8,
+    column="Age",
+    grid=False,
+    figsize=(8, 8),
+    color="#86bf91",
+    zorder=2,
+    rwidth=0.9,
+    ax=ax,
+  )
+  st.write(fig)
