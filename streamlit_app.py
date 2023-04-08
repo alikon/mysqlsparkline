@@ -36,7 +36,7 @@ def showChart(df, age):
     )
   ).encode(
       x='day:T',
-      y='issues:Q'
+      y='alt.Y('sum(issues)').scale(type="log")'
   )
   st.altair_chart(chart)
 
@@ -47,7 +47,7 @@ st.title("Datasort")
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
-  age = st.slider('Start at ?', 0, 300, 25)
+  age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
   showChart(df, age)
   # st.write(df)
