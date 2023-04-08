@@ -44,3 +44,5 @@ chart_data = pd.DataFrame(
     columns=['issues'])
 
 st.line_chart(chart_data)
+
+st.bar_chart({"data": openi})
