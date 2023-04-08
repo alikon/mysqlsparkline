@@ -24,11 +24,11 @@ def showChart(df, age):
   )
 
   chart = alt.Chart(source).mark_area(
-    line={'color':'darkgreen'},
+    line={'color':'red'},
     color=alt.Gradient(
         gradient='linear',
         stops=[alt.GradientStop(color='white', offset=0),
-               alt.GradientStop(color='darkgreen', offset=1)],
+               alt.GradientStop(color='red', offset=1)],
         x1=1,
         x2=1,
         y1=1,
@@ -43,12 +43,12 @@ def showChart(df, age):
 st.title("Datasort")
 
 
-age = st.slider('Start at ?', 0, 300, 25)
-st.write("From ", age, ' old')
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
+  age = st.slider('Start at ?', 0, 300, 25)
+  st.write("From ", age, ' old')
   showChart(df, age)
   # st.write(df)
   # st.line_chart(chart_data)
