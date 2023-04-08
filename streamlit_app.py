@@ -32,7 +32,7 @@ chart_data = pd.DataFrame(
 
 source = pd.DataFrame({
   'x': newdf['openi'].tolist(),
-  'f(x)': df['execution'].tolist()
+  'f(x)': newdf['execution'].tolist()
 })
 
 chart = alt.Chart(source).mark_line().encode(
