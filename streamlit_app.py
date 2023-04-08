@@ -36,8 +36,8 @@ source = pd.DataFrame({
 })
 
 chart = alt.Chart(source).mark_line().encode(
-    x='issues',
-    y='day'
+    x='day',
+    y='issuesgr'
 )
 st.altair_chart(chart)
 # st.line_chart(chart_data)
