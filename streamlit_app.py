@@ -71,9 +71,9 @@ if df is not None:
   st.write("From ", age, ' old')
   tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
   with tab1:
-    tab1.showIssues(df, age)
+    showIssues(df, age)
   with tab2:
-    tab2.showPulls(df, age)
+    showPulls(df, age)
   # st.write(df)
   # st.line_chart(chart_data)
   # st.bar_chart({"data": newdf['openi'].tolist()})
