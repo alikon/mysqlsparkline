@@ -18,7 +18,23 @@ def showChart(df, age):
     'issues': newdf['openi'].tolist()
   })
 
-  chart = alt.Chart(source.reset_index()).mark_line().encode(
+  chart1 = alt.Chart(source).mark_line().encode(
+      x='day:T',
+      y='issues:Q'
+  )
+
+  chart = alt.Chart(source).mark_area(
+    line={'color':'darkgreen'},
+    color=alt.Gradient(
+        gradient='linear',
+        stops=[alt.GradientStop(color='white', offset=0),
+               alt.GradientStop(color='darkgreen', offset=1)],
+        x1=1,
+        x2=1,
+        y1=1,
+        y2=0
+    )
+  ).encode(
       x='day:T',
       y='issues:Q'
   )
