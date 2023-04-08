@@ -68,7 +68,7 @@ df = pd.read_csv("./data/dataset.csv")
 if df is not None:
   # df = pd.read_csv(uploaded_file)
   df['execution'] = pd.to_datetime(df['execution'])
-  slider = st.slider('Select date', min_value=df['execution'].min(), value=df['execution'].max() ,max_value=df['execution'].max())
+  slider = st.slider('Select date', min_value=datetime.date(df['execution'].min()), value=datetime.date(df['execution'].max()) ,max_value=datetime.date(df['execution'].max()))
   st.sidebar.write(slider)
   start_dt = st.sidebar.date_input('Start date', value=df['execution'].min())
   end_dt = st.sidebar.date_input('End date', value=df['execution'].max())
