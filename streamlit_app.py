@@ -8,7 +8,7 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file)
   st.write(df)
-
+'''
   # Add some matplotlib code !
   fig, ax = plt.subplots()
   df.hist(
@@ -22,7 +22,7 @@ if uploaded_file is not None:
     ax=ax,
   )
   st.write(fig)
-
+'''
 
    
 year = [1920, 1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
