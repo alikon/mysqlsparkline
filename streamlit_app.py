@@ -68,7 +68,7 @@ df = pd.read_csv("./data/dataset.csv")
 if df is not None:
   # df = pd.read_csv(uploaded_file)
   df['execution'] = pd.to_datetime(df['execution'])
-  start_date, end_date = st.date_picker("Pick a date range", [datetime.date(df['execution'].min()), datetime.date(df['execution'].max())])
+  start_date, end_date = st.date_input("Pick a date range", [datetime.date(df['execution'].min()), datetime.date(df['execution'].max())])
   st.sidebar.write(start_date)
   st.sidebar.write(end_date)
   start_dt = st.sidebar.date_input('Start date', value=df['execution'].min())
