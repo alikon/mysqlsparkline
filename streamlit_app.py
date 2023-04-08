@@ -20,8 +20,10 @@ def showChart(df, age):
 
   chart = alt.Chart(source.reset_index()).mark_line().encode(
       x='day:T',
-      y='average(issues)'
-  )
+      y='issues:Q'
+  ).resolve_scale(
+    y='issues'
+)
   st.altair_chart(chart)
 
 st.title("Datasort")
