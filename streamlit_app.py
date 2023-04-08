@@ -44,9 +44,10 @@ st.title("Datasort")
 
 
 
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-  df = pd.read_csv(uploaded_file)
+#uploaded_file = st.file_uploader("Choose a file")
+df = pd.read_csv("./data/dataset.csv")
+if df is not None:
+  # df = pd.read_csv(uploaded_file)
   age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
   showChart(df, age)
