@@ -68,7 +68,7 @@ df = pd.read_csv("./data/dataset.csv")
 if df is not None:
   # df = pd.read_csv(uploaded_file)
   df['execution'] = pd.to_datetime(df['execution'])
-  start_dt = st.sidebar.date_input('Start date', value=df['execution'].min())
+  start_dt = st.sidebar.slider('Start date', df['execution'].min(),df['execution'].max(),(df['execution'].min(),df['execution'].max()))
   end_dt = st.sidebar.date_input('End date', value=df['execution'].max())
   age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
