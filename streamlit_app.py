@@ -30,10 +30,17 @@ unemployment_rate = [9.8, 12, 8, 7.2, 6.9, 7, 6.5, 6.2, 5.5, 6.3]
 data =df['execution'].tolist()
 openi=df['openi'].tolist()
   
-plt.plot(data, openi, color='red', marker='o')
-plt.title('unemployment rate vs year', fontsize=14)
-plt.xlabel('year', fontsize=14)
-plt.ylabel('unemployment rate', fontsize=14)
+plt.plot(data, openi, color='red', marker='.')
+plt.title('issues by day', fontsize=14)
+plt.xlabel('days', fontsize=14)
+plt.ylabel('issues', fontsize=14)
 plt.grid(True)
 fig = plt.show()
 st.pyplot(fig)
+
+
+chart_data = pd.DataFrame(
+    openi,
+    columns=['issues'])
+
+st.line_chart(chart_data)
