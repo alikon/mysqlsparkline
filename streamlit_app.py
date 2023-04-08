@@ -31,13 +31,13 @@ chart_data = pd.DataFrame(
     columns=['issues'])
 
 source = pd.DataFrame({
-  'x': newdf['openi'].tolist(),
-  'f(x)': newdf['execution'].tolist()
+  'issues': newdf['openi'].tolist(),
+  'day': newdf['execution'].tolist()
 })
 
 chart = alt.Chart(source).mark_line().encode(
-    x='x',
-    y='f(x)'
+    x='issues',
+    y='day'
 )
 st.altair_chart(chart)
 # st.line_chart(chart_data)
