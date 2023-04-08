@@ -70,8 +70,10 @@ if df is not None:
   age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
   tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
-  tab1.showIssues(df, age)
-  tab2.showPulls(df, age)
+  with tab1:
+    tab1.showIssues(df, age)
+  with tab2:
+    tab2.showPulls(df, age)
   # st.write(df)
   # st.line_chart(chart_data)
   # st.bar_chart({"data": newdf['openi'].tolist()})
