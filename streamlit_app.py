@@ -14,6 +14,13 @@ data =df['execution'].tolist()
 openi=df['openi'].tolist()
 id=df['id'].tolist()
 
+# sorting data frame by a column
+df.sort_values("id", axis=0, ascending=True,
+                 inplace=True, na_position='first')
+  
+# display
+df.head(10)
+
 start_time = st.slider(
     "When do you start?",
     value=datetime(2020, 1, 1, 1, 30),
