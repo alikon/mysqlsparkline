@@ -31,8 +31,8 @@ chart_data = pd.DataFrame(
     columns=['issues'])
 
 source = pd.DataFrame({
-  'issues': newdf['openi'].tolist(),
-  'day': newdf['execution'].tolist()
+  'day': newdf['execution'].tolist(),
+  'issues': newdf['openi'].tolist()
 })
 
 chart = alt.Chart(source).mark_line().encode(
