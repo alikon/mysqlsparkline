@@ -4,12 +4,7 @@ import streamlit as st
 from datetime import datetime
 
 st.title("Datasort")
-start_time = st.slider(
-    "When do you start?",
-    value=datetime(2020, 1, 1, 1, 30),
-    format="DD/MM/YY - hh:mm")
 
-st.write("Start time:", start_time)
 age = st.slider('Start at ?', 0, 300, 25)
 st.write("From ", age, ' old')
 
