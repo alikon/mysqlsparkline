@@ -36,7 +36,7 @@ def showChart(df, age):
     )
   ).encode(
       alt.X('day:T'),
-      alt.Y('issues:Q',scale=alt.Scale(type='log', domain=[600, 900]),)
+      alt.Y('issues:Q',scale=alt.Scale(type='log', domain=[600, 1000]),)
   )
   st.altair_chart(chart)
 
