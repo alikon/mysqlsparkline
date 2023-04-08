@@ -3,25 +3,16 @@ import streamlit as st
 from datetime import datetime
 import altair as alt
 
-def showChart(df, age):
+def showIssues(df, age):
   # sorting data frame by a column
   df.sort_values("id", axis=0, ascending=True,
                  inplace=True, na_position='first')
   newdf = df[(df.id > age)]
 
-  chart_data = pd.DataFrame(
-    newdf['openi'].tolist(),
-    columns=['issues'])
-
   source = pd.DataFrame({
     'day': newdf['execution'].tolist(),
     'issues': newdf['openi'].tolist()
   })
-
-  chart1 = alt.Chart(source).mark_line().encode(
-      x='day:T',
-      y='issues:Q'
-  )
 
   chart = alt.Chart(source).mark_area(
     line={'color':'red'},
@@ -40,6 +31,34 @@ def showChart(df, age):
   )
   st.altair_chart(chart)
 
+def showPulls(df, age):
+  # sorting data frame by a column
+  df.sort_values("id", axis=0, ascending=True,
+                 inplace=True, na_position='first')
+  newdf = df[(df.id > age)]
+
+  source = pd.DataFrame({
+    'day': newdf['execution'].tolist(),
+    'pulls': newdf['openp'].tolist()
+  })
+
+  chart = alt.Chart(source).mark_area(
+    line={'color':'green'},
+    color=alt.Gradient(
+        gradient='linear',
+        stops=[alt.GradientStop(color='white', offset=0),
+               alt.GradientStop(color='green', offset=1)],
+        x1=1,
+        x2=1,
+        y1=1,
+        y2=0
+    )
+  ).encode(
+      alt.X('day:T'),
+      alt.Y('pulls:Q',scale=alt.Scale(type='log', domain=[100, 500]),)
+  )
+  st.altair_chart(chart)
+
 st.title("Datasort")
 
 
@@ -50,7 +69,9 @@ if df is not None:
   # df = pd.read_csv(uploaded_file)
   age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
-  showChart(df, age)
+  tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
+  tab1.showIssues(df, age)
+  tab2.showPulls(df, age)
   # st.write(df)
   # st.line_chart(chart_data)
   # st.bar_chart({"data": newdf['openi'].tolist()})
