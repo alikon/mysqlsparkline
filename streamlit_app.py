@@ -1,7 +1,7 @@
-import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 from datetime import datetime
+import altair as alt
 
 st.title("Datasort")
 
@@ -30,6 +30,16 @@ chart_data = pd.DataFrame(
     newdf['openi'].tolist(),
     columns=['issues'])
 
-st.line_chart(chart_data)
+source = pd.DataFrame({
+  'x': newdf['openi'].tolist(),
+  'f(x)': df['execution'].tolist()
+})
 
-st.bar_chart({"data": newdf['openi'].tolist()})
+chart = alt.Chart(source).mark_line().encode(
+    x='x',
+    y='f(x)'
+)
+st.altair_chart(chart)
+# st.line_chart(chart_data)
+
+# st.bar_chart({"data": newdf['openi'].tolist()})
