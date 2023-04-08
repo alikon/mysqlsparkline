@@ -7,7 +7,7 @@ def showIssues(df, age):
   # sorting data frame by a column
   df.sort_values("id", axis=0, ascending=True,
                  inplace=True, na_position='first')
-  newdf = df[(datetime(df.execution) > age)]
+  newdf = df[(df.id > age)]
 
   source = pd.DataFrame({
     'day': newdf['execution'].tolist(),
@@ -75,7 +75,7 @@ if df is not None:
   st.write("From ", age, ' old')
   tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
   with tab1:
-    showIssues(df, slider)
+    showIssues(df, age)
   with tab2:
     showPulls(df, age)
   # st.write(df)
