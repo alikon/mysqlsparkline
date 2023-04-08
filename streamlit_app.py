@@ -12,17 +12,21 @@ if uploaded_file is not None:
 
 data =df['execution'].tolist()
 openi=df['openi'].tolist()
+id=df['id'].tolist()
+
+start_time = st.slider(
+    "When do you start?",
+    value=datetime(2020, 1, 1, 1, 30),
+    format="DD/MM/YY - hh:mm")
+
+st.write("Start time:", start_time)
+age = st.slider('Start at ?', 0, 300, 25)
+st.write("From ", age, ' old')
+
 
 chart_data = pd.DataFrame(
     openi,
     columns=['issues'])
-
-start_time = st.slider(
-    "When do you start?",
-    value=datetime(2020, 1, 1, 9, 30),
-    format="MM/DD/YY - hh:mm")
-
-st.write("Start time:", start_time)
 
 st.line_chart(chart_data)
 
