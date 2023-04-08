@@ -3,7 +3,7 @@ import streamlit as st
 from datetime import datetime
 import altair as alt
 
-def showChart(df, age)
+def showChart(df, age):
   # sorting data frame by a column
   df.sort_values("id", axis=0, ascending=True,
                  inplace=True, na_position='first')
