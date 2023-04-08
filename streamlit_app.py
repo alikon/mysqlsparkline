@@ -70,8 +70,7 @@ if df is not None:
   df['execution'] = pd.to_datetime(df['execution'])
   slider = st.slider('Select date', min_value=datetime.date(df['execution'].min()), value=datetime.date(df['execution'].max()) ,max_value=datetime.date(df['execution'].max()))
   st.sidebar.write(slider)
-  start_dt = st.sidebar.date_input('Start date', value=df['execution'].min())
-  end_dt = st.sidebar.date_input('End date', value=df['execution'].max())
+
   age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
   tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
