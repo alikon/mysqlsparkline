@@ -69,7 +69,7 @@ if df is not None:
   # df = pd.read_csv(uploaded_file)
   df['execution'] = pd.to_datetime(df['execution'])
   slider = st.sidebar.slider('Select date', min_value=datetime.date(df['execution'].min()), value=datetime.date(df['execution'].max()) ,max_value=datetime.date(df['execution'].max()))
-  st.sidebar.write(slider)
+  st.sidebar.write(datetime(slider))
 
   age = st.slider('Start at ?', 0, 300, 0)
   st.write("From ", age, ' old')
