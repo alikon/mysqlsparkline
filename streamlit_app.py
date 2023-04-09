@@ -32,14 +32,10 @@ def showIssues(df, ts):
   st.altair_chart(chart)
 
 def showPulls(df, ts):
-  # sorting data frame by a column
-  df.sort_values("id", axis=0, ascending=True,
-                 inplace=True, na_position='first')
-  newdf = df[(df.execution > ts)]
 
   source = pd.DataFrame({
-    'day': newdf['execution'].tolist(),
-    'pulls': newdf['openp'].tolist()
+    'day': df['execution'].tolist(),
+    'pulls': df['openp'].tolist()
   })
 
   chart = alt.Chart(source).mark_area(
@@ -69,17 +65,16 @@ if df is not None:
   # df = pd.read_csv(uploaded_file)
   df['execution'] = pd.to_datetime(df['execution'])
   slider = st.sidebar.slider('Select date', min_value=datetime.date(df['execution'].min()), value=datetime.date(df['execution'].min()) ,max_value=datetime.date(df['execution'].max()))
-  ts = pd.DatetimeIndex([slider])[0] 
-  st.sidebar.write(ts)
+  ts = pd.DatetimeIndex([slider])[0]
+  # sorting data frame by a column
+  df.sort_values("id", axis=0, ascending=True,
+                 inplace=True, na_position='first')
+  newdf = df[(df.execution > ts)]
 
-  # age = st.slider('Start at ?', 0, 300, 0)
-  # st.write("From ", age, ' old')
   tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
   with tab1:
     showIssues(df, ts)
   with tab2:
-    showPulls(df, ts)
+    showPulls(newdf, ts)
   with st.expander("See explanation"):
     st.write(df)
-  # st.line_chart(chart_data)
-  # st.bar_chart({"data": newdf['openi'].tolist()})
