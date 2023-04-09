@@ -55,7 +55,7 @@ def showPulls(df, ts):
     )
   ).encode(
       alt.X('day:T'),
-      alt.Y('pulls:Q',scale=alt.Scale(type='log', domain=[100, 400]),)
+      alt.Y('pulls:Q',scale=alt.Scale(type='log', domain=[100, 350]),)
   )
   st.altair_chart(chart)
 
