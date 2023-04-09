@@ -3,11 +3,11 @@ import streamlit as st
 from datetime import datetime
 import altair as alt
 
-def showIssues(df, age):
+def showIssues(df, ts):
   # sorting data frame by a column
   df.sort_values("id", axis=0, ascending=True,
                  inplace=True, na_position='first')
-  newdf = df[(df.id > age)]
+  newdf = df[(df.execution > ts)]
 
   source = pd.DataFrame({
     'day': newdf['execution'].tolist(),
@@ -31,11 +31,11 @@ def showIssues(df, age):
   )
   st.altair_chart(chart)
 
-def showPulls(df, age):
+def showPulls(df, ts):
   # sorting data frame by a column
   df.sort_values("id", axis=0, ascending=True,
                  inplace=True, na_position='first')
-  newdf = df[(df.execution > age)]
+  newdf = df[(df.execution > ts)]
 
   source = pd.DataFrame({
     'day': newdf['execution'].tolist(),
@@ -72,11 +72,11 @@ if df is not None:
   ts = pd.DatetimeIndex([slider])[0] 
   st.sidebar.write(ts)
 
-  age = st.slider('Start at ?', 0, 300, 0)
-  st.write("From ", age, ' old')
+  # age = st.slider('Start at ?', 0, 300, 0)
+  # st.write("From ", age, ' old')
   tab1, tab2 = st.tabs(["📈 Issues", "🗃 Pull Requests"])
   with tab1:
-    showIssues(df, age)
+    showIssues(df, ts)
   with tab2:
     showPulls(df, ts)
   # st.write(df)
