@@ -79,6 +79,7 @@ if df is not None:
     showIssues(df, ts)
   with tab2:
     showPulls(df, ts)
-  # st.write(df)
+  with st.expander("See explanation"):
+    st.write(df)
   # st.line_chart(chart_data)
   # st.bar_chart({"data": newdf['openi'].tolist()})
