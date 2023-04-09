@@ -55,7 +55,7 @@ def showPulls(df, ts):
     )
   ).encode(
       alt.X('day:T'),
-      alt.Y('pulls:Q',scale=alt.Scale(type='log', domain=[100, 500]),)
+      alt.Y('pulls:Q',scale=alt.Scale(type='log', domain=[100, 400]),)
   )
   st.altair_chart(chart)
 
@@ -68,7 +68,7 @@ df = pd.read_csv("./data/dataset.csv")
 if df is not None:
   # df = pd.read_csv(uploaded_file)
   df['execution'] = pd.to_datetime(df['execution'])
-  slider = st.sidebar.slider('Select date', min_value=datetime.date(df['execution'].min()), value=datetime.date(df['execution'].max()) ,max_value=datetime.date(df['execution'].max()))
+  slider = st.sidebar.slider('Select date', min_value=datetime.date(df['execution'].min()), value=datetime.date(df['execution'].min()) ,max_value=datetime.date(df['execution'].max()))
   ts = pd.DatetimeIndex([slider])[0] 
   st.sidebar.write(ts)
 
